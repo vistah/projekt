@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Todo, TodoSecond
-from .forms import TodoForm, TodoFormSecond
+from .models import Todo
+from .forms import TodoForm
 
 
 #view for the link index.html
@@ -21,7 +21,8 @@ def first(request):
 
     return render(request, 'todo/first_semester.html', context)
 
-#view for the link second_semester.html
+
+#views for the link first_semester.html
 def second(request):
     todo_list = Todo.objects.order_by('id')
 
@@ -33,17 +34,6 @@ def second(request):
 
 
 @require_POST
-def addTodoSecond(request):
-    form = TodoFormSecond(request.POST)
-
-    if form.is_valid():
-        new_todo = TodoSecond(text=request.POST['text'])
-        new_todo.save()
-
-    return redirect('second')
-
-
-@require_POST
 def addTodo(request):
     form = TodoForm(request.POST)
 
@@ -52,6 +42,17 @@ def addTodo(request):
         new_todo.save()
 
     return redirect('first')
+
+
+@require_POST
+def addTodoSecond(request):
+    form = TodoForm(request.POST)
+
+    if form.is_valid():
+        new_todo = Todo(text=request.POST['text'])
+        new_todo.save()
+
+    return redirect('second')
 
 
 def completeTodo(request, todo_id):
@@ -92,6 +93,7 @@ def deleteAllSecond(request):
     Todo.objects.all().delete()
 
     return redirect('second')
+
 
 @csrf_exempt
 def deleteTodo(request, todo_id):

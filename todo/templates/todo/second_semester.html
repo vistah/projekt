@@ -113,7 +113,7 @@
                             </div>
                         </li>
                         {% else %}
-                        <a style="color: lawngreen; text-decoration: none " href="{% url 'complete' todo.id %}">
+                        <a style="color: lawngreen; text-decoration: none " href="{% url 'complete-second' todo.id %}">
                             <li class="list-group-item">{{ todo.text }}
                                 <div class="float-right">
                                     <a href="{% url 'edit' todo.pk %}">
@@ -123,7 +123,7 @@
                                         </button>
                                     </a>
 
-                                    <a href="{% url 'delete' todo.id %}">
+                                    <a href="{% url 'delete-second' todo.id %}">
                                         <button type="submit" class="btn btn-danger btn-sm ">Delete
                                         </button>
                                     </a>
