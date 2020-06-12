@@ -1,0 +1,158 @@
+<head>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>ToDo Web Application</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand nav-link" href="./">What Is Left To Do Until Your Graduation?</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="first_semester.html">1st Semester</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="second_semester.html">2nd Semester</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="3">3nd Semester</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="4">4nd Semester</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="5">5nd Semester</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="6">6nd Semester</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="7">7nd Semester</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="8">8nd Semester</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container" style="text-align: center;">
+        <h1 class="display-4">Hi, I'm glad you made it here!</h1>
+        <br>
+        <p class="lead" style="font-size: 22px">Welcome to your 1st semester.</p>
+        <p class="lead" style="font-size: 16px">Below you can see a text field section where you can write your classes
+            into. Can you see it? GOOOOD.</p>
+        <p class="lead" style="font-size: 16px">Overwrite your classes by typing in the name of it in the text field
+            below and clicking on
+            "Submit" or hitting the enter button. Don't be shy - Try it!</p>
+        <p class="lead" style="font-size: 16px">After submitting your class you can now see it below. Not completed
+            classes will appear in the color <span style="color:lawngreen;font-weight: bold"> Green.</span></p>
+        <p class="lead" style="font-size: 16px">After completing the class click on it and it will appear <span
+                style="font-weight: bold">Black.</span></p>
+        <p class="lead" style="font-size: 16px">If you have accidentally added a class that you did not want to add
+            click on
+            "Delete" to remove it manually. </p>
+        <p class="lead" style="font-size:16px "> To remove every item click on "DELETE ALL". To remove the completed
+            ones click on "DELETE COMPLETED".</p>
+    </div>
+</div>
+<div class="container-fluid" id="wrapper">
+    <div class="row mt-4">
+        <div class="col-lg-12 col-lg-offset-4" id="content">
+            <form action="{% url 'add' %}" method="POST" class="form-group">{% csrf_token %}
+                <div class="form-group">
+                    <div class="input-group">
+                        {{ form.text }}
+                        <button type="submit" class="btn btn-secondary"
+                                style="margin-left: 5px;">Submit
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col col-lg-12">
+                    <div class="btn-toolbar">
+                        <div class="btn-group ">
+                            <a href="{% url 'deletecomplete' %}">
+                                <button type="button" class="btn btn-danger" style="margin-right: 5px">
+                                    <i class="glyphicon glyphicon-trash"></i> DELETE COMPLETED
+                                </button>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="{% url 'deleteall' %}">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-trash"></i> DELETE ALL
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <ul class="list-group" style="margin-bottom: 15px">
+
+                        {% for todo in todo_list %}
+                        {% if todo.complete %}
+                        <li class="list-group-item todo-completed">{{ todo.text }}
+                            <div class="float-right">
+                                <a href="{% url 'edit' todo.id %}">
+                                    <button type="button" class="btn btn-secondary btn-sm">Edit
+                                    </button>
+                                </a>
+                                <a href="{% url 'delete' todo.id %}">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete
+                                    </button>
+                                </a>
+
+                            </div>
+                        </li>
+                        {% else %}
+                        <a style="color: lawngreen; text-decoration: none " href="{% url 'complete' todo.id %}">
+                            <li class="list-group-item">{{ todo.text }}
+                                <div class="float-right">
+                                    <a href="{% url 'edit' todo.pk %}">
+                                        <button type="button"
+                                                class="btn btn-secondary btn-sm"><span
+                                                class="glyphicon glyphicon-pencil" alrial-hidden="true"></span>Edit
+                                        </button>
+                                    </a>
+
+                                    <a href="{% url 'delete' todo.id %}">
+                                        <button type="submit" class="btn btn-danger btn-sm ">Delete
+                                        </button>
+                                    </a>
+                                </div>
+                            </li>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
