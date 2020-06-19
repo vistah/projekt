@@ -13,7 +13,7 @@ def index(request):
 
 #views for the link first_semester.html
 def first(request):
-    todo_list = Todo.objects.order_by('id')
+    todo_list = Todo.objects.filter(semester=1)
 
     form = TodoForm()
 

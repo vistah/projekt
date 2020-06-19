@@ -76,9 +76,9 @@
             ones click on "DELETE COMPLETED".</p>
     </div>
 </div>
-<div class="container-fluid" id="wrapper">
+<div class="container-fluid">
     <div class="row mt-4">
-        <div class="col-lg-12 col-lg-offset-4" id="content">
+        <div class="col-lg-12 col-lg-offset-4">
             <form action="{% url 'add' %}" method="POST" class="form-group">{% csrf_token %}
                 <div class="form-group">
                     <div class="input-group">
@@ -117,7 +117,7 @@
                     <ul class="list-group" style="margin-bottom: 15px">
 
                         {% for todo in todo_list %}
-                        {% if todo.complete %}
+                        {% if todo.complete and todo.semester %}
                         <li class="list-group-item todo-completed">{{ todo.text }}
                             <div class="float-right">
                                 <a href="{% url 'edit' todo.id %}">

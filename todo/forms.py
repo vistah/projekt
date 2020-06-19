@@ -4,9 +4,9 @@ from django import forms
 
 The input is limited to 40 letters. The class is form-control and the placeholder is 'Enter your class here'. 
 Autocomplete is set on 'off' to avoid distraction while entering a class. 
-The attribute 'pattern':'[A-Za-z1-3:-/ ]+' means that there are only letters, digits from 1-3 and whitespaces allowed in the CharField,
+The attribute 'pattern':'[A-Za-z1-3:/ ]+' means that there are only letters, digits from 1-3 and whitespaces allowed in the CharField,
 no special characters nor umlauts/vowels.
-Only '-:/' are allowed as special characters oriented on the module description of FIW. Which special characters are allowed is 
+Only ':/' are allowed as special characters oriented on the module description of FIW. Which special characters are allowed is 
 written in the description on the [...]_semester.html sites.
 """
 
