@@ -1,6 +1,6 @@
 from django import forms
 
-"""                                  - Describing the class TodoForm -
+"""                                  - Description of the class TodoForm -
 
 The input is limited to 40 letters. The class is form-control and the placeholder is 'Enter your class here'. 
 Autocomplete is set on 'off' to avoid distraction while entering a class. 
