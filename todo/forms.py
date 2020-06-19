@@ -15,7 +15,7 @@ class TodoForm(forms.Form):
     text = forms.CharField(max_length=40,
                            widget=forms.TextInput(
                                attrs={'class': 'form-control', 'placeholder': ' Enter your class here',
-                                      'autocomplete': 'off', 'pattern': '[A-Za-z1-3:-/ ]+'})
+                                      'autocomplete': 'off', 'pattern': '[A-Za-z1-3:/ ]+'})
                            )
 
 

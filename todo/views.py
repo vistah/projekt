@@ -22,7 +22,7 @@ def first(request):
     return render(request, 'todo/first_semester.html', context)
 
 
-#views for the link first_semester.html
+#views for the link second_semester.html
 def second(request):
     todo_list = Todo.objects.order_by('id')
 
