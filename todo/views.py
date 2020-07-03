@@ -13,7 +13,7 @@ def index(request):
 
 #views for the link first_semester.html
 def first(request):
-    todo_list = Todo.objects.order_by('id')
+    todo_list = Todo.objects.filter(semester=1) and Todo.objects.order_by('id')
 
     form = TodoForm()
 
@@ -24,7 +24,7 @@ def first(request):
 
 #views for the link second_semester.html
 def second(request):
-    todo_list = Todo.objects.order_by('id')
+    todo_list = Todo.objects.filter(semester=2) and Todo.objects.order_by('id')
 
     form = TodoForm()
 
@@ -39,6 +39,7 @@ def addTodo(request):
 
     if form.is_valid():
         new_todo = Todo(text=request.POST['text'])
+        #new_todo = form.save(commit=False)
         new_todo.save()
 
     return redirect('first')
@@ -50,6 +51,7 @@ def addTodoSecond(request):
 
     if form.is_valid():
         new_todo = Todo(text=request.POST['text'])
+        new_todo.semester=2
         new_todo.save()
 
     return redirect('second')
