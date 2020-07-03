@@ -108,20 +108,3 @@ def deleteTodoSecond(request, todo_id):
     Todo.objects.get(id=todo_id).delete()
     return HttpResponseRedirect('/second_semester.html')
 
-
-def editTodo(request, pk):
-    todo = Todo.objects.get(id=pk)
-    form = TodoForm(instance=task)
-
-    if request.method == "POST":
-        form = TodoForm(request.POST, instance=task)
-        if form.is_valid():
-            form.save()
-            return redirect('first')
-    else:
-        form = TodoForm(instance=post)
-    template='first_semester.html'
-    context={'form':form}
-    return render(request, template, context)
-
-

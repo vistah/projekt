@@ -11,7 +11,6 @@ urlpatterns = [
     path('deletecomplete', views.deleteCompleted, name='deletecomplete'),
     path('deleteall', views.deleteAll, name='deleteall'),
     path('delete/<todo_id>', views.deleteTodo, name="delete"),
-    path('edit/<todo_id>', views.editTodo, name="edit"),
 
     # urls for the second semester
     path('second_semester.html', views.second, name="second"),

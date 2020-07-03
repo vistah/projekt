@@ -21,10 +21,3 @@ class TodoForm(forms.Form):
 
 # 'pattern':'[A-Za-z1-3 ]+' means that there are only letters, digits from 1-3 and whitespaces allowed in the CharField, no special characters, no umlauts/vowels
 # Only -:/ are allowed as special characters. I oriented on the module description of FIW.
-
-class TodoFormSecond(forms.Form):
-    text = forms.CharField(max_length=40,
-                           widget=forms.TextInput(
-                               attrs={'class': 'form-control', 'placeholder': ' Your Class', 'aria-label': 'Todo',
-                                      'aria-describedby': 'add-btn', 'autocomplete': 'off', 'pattern': '[A-Za-z1-3 ]+'})
-                           )
