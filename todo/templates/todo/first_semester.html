@@ -117,7 +117,7 @@
                     <ul class="list-group" style="margin-bottom: 15px">
 
                         {% for todo in todo_list %}
-                        {% if todo.complete and todo.semester %}
+                        {% if todo.complete %}
                         <li class="list-group-item todo-completed">{{ todo.text }}
                             <div class="float-right">
                                 <a href="{% url 'edit' todo.id %}">
